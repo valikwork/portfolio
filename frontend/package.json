@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-types": "tsx scripts/generate-strapi-types.ts",
+    "generate-types:watch": "tsx scripts/generate-strapi-types.ts && echo 'Types generated! Run this command when Strapi schemas change.'"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.2",
@@ -28,9 +30,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }

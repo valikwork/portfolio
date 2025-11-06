@@ -1,0 +1,82 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global",
+    "name": "global",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "metadata": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "meta.metadata",
+      "repeatable": false
+    },
+    "favicon": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "notificationBanner": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "elements.notification-banner",
+      "repeatable": false
+    },
+    "navbar": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "layout.navbar",
+      "repeatable": false
+    },
+    "footer": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "layout.footer",
+      "repeatable": false
+    },
+    "test": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}
