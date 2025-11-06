@@ -8,7 +8,13 @@ const config: Config = {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        noto: ["Noto Sans", "sans-serif"],
+        "noto-display": ["Noto Sans Display", "sans-serif"],
+        sans: ["Noto Sans", "sans-serif"], // Override default sans-serif
+      },
+    },
   },
   plugins: [],
 };
