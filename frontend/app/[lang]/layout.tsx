@@ -24,7 +24,6 @@ async function getGlobal(): Promise<GlobalResponse> {
 
   const urlParamsObject = {
     populate: [
-      // "metadata.shareImage",
       "favicon",
       "navbar.links",
       "navbar.navbarLogo.logoImg",
