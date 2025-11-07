@@ -17,8 +17,8 @@ const FooterLink = ({ url, text }: LinksLink) => {
     <li className="flex">
       <Link
         href={url}
-        className={`hover:dark:text-violet-400 ${
-          path === url && "dark:text-violet-400 dark:border-violet-400"
+        className={`text-gray-600 hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400 ${
+          path === url && "text-violet-600 dark:text-violet-400"
         }}`}
       >
         {text}
@@ -30,7 +30,10 @@ const FooterLink = ({ url, text }: LinksLink) => {
 const CategoryLink = (attributes: Category) => {
   return (
     <li className="flex">
-      <Link href={`/${attributes.slug}`} className="hover:dark:text-violet-400">
+      <Link
+        href={`/${attributes.slug}`}
+        className="text-gray-600 hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400"
+      >
         {attributes.name}
       </Link>
     </li>
@@ -68,8 +71,8 @@ const Footer = ({
   socialLinks: LinksSocialLink[];
 }) => {
   return (
-    <footer className="py-6 dark:bg-black dark:text-gray-50">
-      <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
+    <footer className="py-6 bg-gray-50 text-gray-900 border-t border-gray-200 dark:bg-black dark:text-gray-50 dark:border-gray-800">
+      <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-300 dark:divide-gray-600 md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <Logo src={logoUrl}>
@@ -78,7 +81,9 @@ const Footer = ({
           </div>
 
           <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium">Categories</p>
+            <p className="pb-1 text-lg font-medium text-gray-800 dark:text-gray-200">
+              Categories
+            </p>
             <ul>
               {categoryLinks.map((link: Category) => (
                 <CategoryLink key={link.slug} {...link} />
@@ -87,7 +92,9 @@ const Footer = ({
           </div>
 
           <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium">Menu</p>
+            <p className="pb-1 text-lg font-medium text-gray-800 dark:text-gray-200">
+              Menu
+            </p>
             <ul>
               {menuLinks.map((link: LinksLink) => (
                 <FooterLink key={link.url} {...link} />
@@ -97,14 +104,14 @@ const Footer = ({
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex">
-            <span className="mr-2">
+            <span className="mr-2 text-gray-600 dark:text-gray-400">
               ©{new Date().getFullYear()} All rights reserved
             </span>
             <ul className="flex">
               {legalLinks.map((link: LinksLink) => (
                 <Link
                   href={link.url}
-                  className="text-gray-400 hover:text-gray-300 mr-2"
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 mr-2"
                   key={link.url}
                 >
                   {link.text}
@@ -121,7 +128,7 @@ const Footer = ({
                   href={link.url}
                   title={link.text}
                   target={link.newTab ? "_blank" : "_self"}
-                  className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-violet-500 text-white hover:bg-violet-600 dark:bg-violet-400 dark:text-gray-900 dark:hover:bg-violet-300"
                 >
                   <RenderSocialIcon social={link.social} />
                 </a>

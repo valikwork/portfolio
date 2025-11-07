@@ -7,6 +7,7 @@ import { fetchAPI } from "./utils/fetch-api";
 import { i18n } from "../../i18n-config";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const FALLBACK_SEO = {
   title: "Strapi Starter Next Blog",
@@ -86,28 +87,28 @@ const RootLayout = async ({
   return (
     <html lang={resolvedParams.lang}>
       <body>
-        {navbar && (
-          <Navbar
-            links={navbar.links ?? []}
-            logoUrl={navbarLogoUrl}
-            logoText={navbar?.navbarLogo?.logoText ?? null}
-          />
-        )}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {navbar && (
+            <Navbar
+              links={navbar.links ?? []}
+              logoUrl={navbarLogoUrl}
+              logoText={navbar?.navbarLogo?.logoText ?? null}
+            />
+          )}
 
-        <main className="dark:bg-black dark:text-gray-100 min-h-screen">
-          {children}
-        </main>
+          <main className="min-h-screen">{children}</main>
 
-        {footer && (
-          <Footer
-            logoUrl={footerLogoUrl}
-            logoText={footer?.footerLogo?.logoText ?? null}
-            menuLinks={footer.menuLinks || []}
-            categoryLinks={footer.categories || []}
-            legalLinks={footer.legalLinks || []}
-            socialLinks={footer.socialLinks || []}
-          />
-        )}
+          {footer && (
+            <Footer
+              logoUrl={footerLogoUrl}
+              logoText={footer?.footerLogo?.logoText ?? null}
+              menuLinks={footer.menuLinks || []}
+              categoryLinks={footer.categories || []}
+              legalLinks={footer.legalLinks || []}
+              socialLinks={footer.socialLinks || []}
+            />
+          )}
+        </ThemeProvider>
       </body>
     </html>
   );

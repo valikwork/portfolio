@@ -26,7 +26,7 @@ const ArticlesList = ({
               <Link
                 href={`${category?.slug}/${article?.slug}`}
                 key={article.id}
-                className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
+                className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-white border border-gray-200 hover:border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-600 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 {imageUrl && (
                   <Image
@@ -50,21 +50,23 @@ const ArticlesList = ({
                     />
                   )}
 
-                  <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
+                  <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline text-gray-900 dark:text-gray-100">
                     {article.title}
                   </h3>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-xs dark:text-gray-400">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
                       {formatDate(article.publishedAt)}
                     </span>
                     {authorsBio && (
-                      <span className="text-xs dark:text-gray-400">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
                         {authorsBio.name}
                       </span>
                     )}
                   </div>
-                  <p className="py-4">{article.description}</p>
+                  <p className="py-4 text-gray-700 dark:text-gray-300">
+                    {article.description}
+                  </p>
                 </div>
               </Link>
             );

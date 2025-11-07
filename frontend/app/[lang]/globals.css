@@ -7,9 +7,18 @@
 @import "react-slideshow-image/dist/styles.css";
 @import "tailwindcss";
 
-body {
-  @apply bg-white dark:bg-black;
+/* Default light mode */
+html, body {
+  background-color: white;
+  color: black;
   font-family: 'Noto Sans', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode */
+html.dark, html.dark body {
+  background-color: #000000;
+  color: #f3f4f6;
 }
 
 /* Apply Noto Sans Display to all headings */
