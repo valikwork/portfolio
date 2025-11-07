@@ -5,14 +5,7 @@ import { usePathname } from "next/navigation";
 import { LinksLink } from "../types/generated-strapi";
 import Logo from "./Logo";
 
-interface NavLink {
-  id: number;
-  url: string;
-  newTab: boolean;
-  text: string;
-}
-
-function NavLink({ url, text }: LinksLink) {
+const NavLink = ({ url, text }: LinksLink) => {
   const path = usePathname();
 
   return (
@@ -27,9 +20,9 @@ function NavLink({ url, text }: LinksLink) {
       </Link>
     </li>
   );
-}
+};
 
-export default function Navbar({
+const Navbar = ({
   links,
   logoUrl,
   logoText,
@@ -37,7 +30,7 @@ export default function Navbar({
   links: LinksLink[];
   logoUrl: string | null;
   logoText: string | null;
-}) {
+}) => {
   return (
     <div className="p-4 dark:bg-black dark:text-gray-100">
       <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
@@ -72,4 +65,6 @@ export default function Navbar({
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;

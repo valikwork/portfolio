@@ -13,7 +13,7 @@ const FALLBACK_SEO = {
   description: "Strapi Starter Next Blog",
 };
 
-async function getGlobal(): Promise<GlobalResponse> {
+const getGlobal = async (): Promise<GlobalResponse> => {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!token)
@@ -38,9 +38,9 @@ async function getGlobal(): Promise<GlobalResponse> {
   const response = await fetchAPI(path, urlParamsObject, options);
 
   return response;
-}
+};
 
-export async function generateMetadata(): Promise<Metadata> {
+export const generateMetadata = async (): Promise<Metadata> => {
   const meta = await getGlobal();
 
   if (!meta.data) return FALLBACK_SEO;
@@ -58,15 +58,15 @@ export async function generateMetadata(): Promise<Metadata> {
       icon: [new URL(url, getStrapiURL())],
     },
   };
-}
+};
 
-export default async function RootLayout({
+const RootLayout = async ({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
-}) {
+}) => {
   const resolvedParams = await params;
   const global = await getGlobal();
   // TODO: CREATE A CUSTOM ERROR PAGE
@@ -103,12 +103,7 @@ export default async function RootLayout({
             logoUrl={footerLogoUrl}
             logoText={footer?.footerLogo?.logoText ?? null}
             menuLinks={footer.menuLinks || []}
-            categoryLinks={
-              footer.categories?.map((cat) => ({
-                ...cat,
-                id: cat.id.toString(),
-              })) || []
-            }
+            categoryLinks={footer.categories || []}
             legalLinks={footer.legalLinks || []}
             socialLinks={footer.socialLinks || []}
           />
@@ -116,8 +111,10 @@ export default async function RootLayout({
       </body>
     </html>
   );
-}
+};
 
-export async function generateStaticParams() {
+export default RootLayout;
+
+export const generateStaticParams = async () => {
   return i18n.locales.map((locale) => ({ lang: locale }));
-}
+};

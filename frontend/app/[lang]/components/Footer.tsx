@@ -11,7 +11,7 @@ import {
 } from "../types/generated-strapi";
 import Logo from "./Logo";
 
-function FooterLink({ url, text }: LinksLink) {
+const FooterLink = ({ url, text }: LinksLink) => {
   const path = usePathname();
   return (
     <li className="flex">
@@ -25,9 +25,9 @@ function FooterLink({ url, text }: LinksLink) {
       </Link>
     </li>
   );
-}
+};
 
-function CategoryLink(attributes: Category) {
+const CategoryLink = (attributes: Category) => {
   return (
     <li className="flex">
       <Link href={`/${attributes.slug}`} className="hover:dark:text-violet-400">
@@ -35,9 +35,9 @@ function CategoryLink(attributes: Category) {
       </Link>
     </li>
   );
-}
+};
 
-function RenderSocialIcon({ social }: { social: string | undefined }) {
+const RenderSocialIcon = ({ social }: { social: string | undefined }) => {
   switch (social) {
     case "WEBSITE":
       return <CgWebsite />;
@@ -50,9 +50,9 @@ function RenderSocialIcon({ social }: { social: string | undefined }) {
     default:
       return null;
   }
-}
+};
 
-export default function Footer({
+const Footer = ({
   logoUrl,
   logoText,
   menuLinks,
@@ -66,7 +66,7 @@ export default function Footer({
   categoryLinks: Category[];
   legalLinks: LinksLink[];
   socialLinks: LinksSocialLink[];
-}) {
+}) => {
   return (
     <footer className="py-6 dark:bg-black dark:text-gray-50">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
@@ -132,4 +132,6 @@ export default function Footer({
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -2,20 +2,18 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchAPI } from "./utils/fetch-api";
 
+import ArticlesList from "./components/ArticlesList";
 import Loader from "./components/Loader";
 import PageHeader from "./components/PageHeader";
+import {
+  Article,
+  ArticleResponse,
+  StrapiCollectionMeta,
+} from "./types/generated-strapi";
 
-interface Meta {
-  pagination: {
-    start: number;
-    limit: number;
-    total: number;
-  };
-}
-
-export default function Profile() {
-  const [meta, setMeta] = useState<Meta | undefined>();
-  const [data, setData] = useState<any>([]);
+const Profile = () => {
+  const [meta, setMeta] = useState<StrapiCollectionMeta | null>();
+  const [data, setData] = useState<Article[] | null>([]);
   const [isLoading, setLoading] = useState(true);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
@@ -38,12 +36,19 @@ export default function Profile() {
         },
       };
       const options = { headers: { Authorization: `Bearer ${token}` } };
-      const responseData = await fetchAPI(path, urlParamsObject, options);
-
+      const responseData: ArticleResponse = await fetchAPI(
+        path,
+        urlParamsObject,
+        options
+      );
+      console.log("responseData", responseData);
       if (start === 0) {
         setData(responseData.data);
       } else {
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        setData((prevData) => [
+          ...(prevData || []),
+          ...(responseData.data || []),
+        ]);
       }
 
       setMeta(responseData.meta);
@@ -68,7 +73,7 @@ export default function Profile() {
   return (
     <div>
       <PageHeader heading="Our Blog" text="Checkout Something Cool" />
-      {/* <PostList data={data}>
+      <ArticlesList data={data}>
         {meta!.pagination.start + meta!.pagination.limit <
           meta!.pagination.total && (
           <div className="flex justify-center">
@@ -81,7 +86,9 @@ export default function Profile() {
             </button>
           </div>
         )}
-      </PostList> */}
+      </ArticlesList>
     </div>
   );
-}
+};
+
+export default Profile;

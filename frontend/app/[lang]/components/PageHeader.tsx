@@ -1,9 +1,4 @@
-interface PageHeaderProps {
-  heading: string;
-  text?: string;
-}
-
-export default function PageHeader({ heading, text }: PageHeaderProps) {
+const PageHeader = ({ heading, text }: { heading: string; text?: string }) => {
   return (
     <div className="my-16 w-full text-center">
       {text && <span className="text-violet-400 font-bold">{text}</span>}
@@ -12,4 +7,6 @@ export default function PageHeader({ heading, text }: PageHeaderProps) {
       </h2>
     </div>
   );
-}
+};
+
+export default PageHeader;

@@ -170,6 +170,15 @@ class StrapiTypeGenerator {
 
     let interfaceCode = `export interface ${interfaceName} {\n`;
 
+    // Add base fields for content types (not components)
+    if (!isComponent) {
+      interfaceCode += `  id: number;\n`;
+      interfaceCode += `  documentId: string;\n`;
+      interfaceCode += `  createdAt: string;\n`;
+      interfaceCode += `  updatedAt: string;\n`;
+      interfaceCode += `  publishedAt: string;\n`;
+    }
+
     for (const [attrName, attribute] of Object.entries(attributes)) {
       const tsType = this.convertAttributeType(attribute);
       const optional = !attribute.required ? "?" : "";
@@ -260,6 +269,27 @@ class StrapiTypeGenerator {
    */
   private generateBaseStrapiTypes(): string {
     return `// Base Strapi types
+export interface StrapiError {
+  status: number;
+  name: string;
+  message: string;
+  details: Record<string, unknown>;
+}
+
+export interface StrapiPagination {
+  start: number;
+  limit: number;
+  total: number;
+}
+
+export interface StrapiCollectionMeta {
+  pagination: StrapiPagination;
+}
+
+export interface StrapiSingleTypeMeta {
+  availableLocales?: string[];
+}
+
 export interface StrapiMedia {
   id: number;
   documentId: string;
@@ -313,52 +343,20 @@ export type StrapiCollection<T> = Array<{
 
 export interface StrapiResponse<T> {
   data: T | null;
-  error?: {
-    status: number;
-    name: string;
-    message: string;
-    details: Record<string, unknown>;
-  };
+  error?: StrapiError;
 }
 
 export interface StrapiCollectionResponse<T> {
-  data: Array<{
-    id: number;
-    attributes: T;
-  }>;
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-  error?: {
-    status: number;
-    name: string;
-    message: string;
-    details: Record<string, unknown>;
-  };
+  data: T[] | null;
+  meta: StrapiCollectionMeta;
+  error?: StrapiError;
 }
 
 // Specific response types for single types
 export interface StrapiSingleTypeResponse<T> {
-  data: ({
-    id: number;
-    documentId: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    locale: string;
-  } & T) | null;
-  meta?: Record<string, any>;
-  error?: {
-    status: number;
-    name: string;
-    message: string;
-    details: Record<string, unknown>;
-  };
+  data: (T & { locale: string }) | null;
+  meta?: StrapiSingleTypeMeta;
+  error?: StrapiError;
 }
 
 `;
