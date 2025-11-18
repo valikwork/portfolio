@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_elements_hero_sections",
+  "info": {
+    "displayName": "Hero Section",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "introduction": {
+      "type": "string",
+      "required": true
+    },
+    "Moto": {
+      "type": "string",
+      "required": true
+    },
+    "SelfDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "SelfPortait": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

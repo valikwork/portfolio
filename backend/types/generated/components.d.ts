@@ -61,6 +61,23 @@ export interface ElementsFooterSection extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsHeroSection extends Struct.ComponentSchema {
+  collectionName: 'components_elements_hero_sections';
+  info: {
+    displayName: 'Hero Section';
+    icon: 'alien';
+  };
+  attributes: {
+    introduction: Schema.Attribute.String & Schema.Attribute.Required;
+    Moto: Schema.Attribute.String & Schema.Attribute.Required;
+    SelfDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    SelfPortait: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ElementsLogos extends Struct.ComponentSchema {
   collectionName: 'components_elements_logos';
   info: {
@@ -153,8 +170,7 @@ export interface LayoutLogo extends Struct.ComponentSchema {
     displayName: 'Logo';
   };
   attributes: {
-    logoImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Schema.Attribute.Required;
+    logoImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     logoText: Schema.Attribute.String;
   };
 }
@@ -483,6 +499,7 @@ declare module '@strapi/strapi' {
       'elements.feature-column': ElementsFeatureColumn;
       'elements.feature-row': ElementsFeatureRow;
       'elements.footer-section': ElementsFooterSection;
+      'elements.hero-section': ElementsHeroSection;
       'elements.logos': ElementsLogos;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.plan': ElementsPlan;

@@ -4,16 +4,16 @@ import { Media } from '../../shared/interfaces/Media';
 import { Media_Plain } from '../../shared/interfaces/Media';
 
 export interface Logo {
-  logoImg: { data: Media };
+  logoImg?: { data: Media };
   logoText?: string;
 }
 export interface Logo_Plain {
-  logoImg: Media_Plain;
+  logoImg?: Media_Plain;
   logoText?: string;
 }
 
 export interface Logo_NoRelations {
-  logoImg: number;
+  logoImg?: number;
   logoText?: string;
 }
 

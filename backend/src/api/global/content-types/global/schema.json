@@ -27,6 +27,16 @@
       "component": "meta.metadata",
       "repeatable": false
     },
+    "hero_section": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "elements.hero-section",
+      "repeatable": false
+    },
     "favicon": {
       "type": "media",
       "pluginOptions": {
@@ -69,14 +79,6 @@
       },
       "component": "layout.footer",
       "repeatable": false
-    },
-    "test": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
     }
   }
 }

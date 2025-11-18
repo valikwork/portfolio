@@ -27,6 +27,7 @@ const getGlobal = async (): Promise<GlobalResponse> => {
     populate: [
       "favicon",
       "navbar.links",
+      "navbar.links",
       "navbar.navbarLogo.logoImg",
       "footer.footerLogo.logoImg",
       "footer.menuLinks",
@@ -83,7 +84,7 @@ const RootLayout = async ({
   const footerLogoUrl = getStrapiMedia(
     footer?.footerLogo?.logoImg?.url || null
   );
-
+  console.log("navbar", navbar);
   return (
     <html lang={resolvedParams.lang}>
       <body>

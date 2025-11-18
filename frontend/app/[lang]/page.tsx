@@ -41,7 +41,7 @@ const Profile = () => {
         urlParamsObject,
         options
       );
-      console.log("responseData", responseData);
+
       if (start === 0) {
         setData(responseData.data);
       } else {

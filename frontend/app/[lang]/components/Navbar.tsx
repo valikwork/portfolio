@@ -13,9 +13,8 @@ const NavLink = ({ url, text }: LinksLink) => {
     <li className="flex">
       <Link
         href={url}
-        className={`flex items-center mx-4 -mb-1 border-b-2 border-transparent hover:border-gray-300 text-gray-700 hover:text-violet-600 dark:border-transparent dark:text-gray-100 dark:hover:text-violet-400 ${
-          path === url &&
-          "text-violet-600 border-violet-600 dark:text-violet-400 dark:border-violet-400"
+        className={`flex items-center mx-4 -mb-1 hover:text-violet-600 dark:hover:text-violet-400 ${
+          path === url && "text-violet-600 dark:text-violet-400"
         }}`}
       >
         {text}
@@ -34,11 +33,12 @@ const Navbar = ({
   logoText: string | null;
 }) => {
   return (
-    <div className="p-4 border-b border-gray-200 text-gray-900 dark:border-gray-800 dark:text-gray-100">
-      <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
-        <Logo src={logoUrl}>
+    <div className="p-4">
+      <div className="container flex justify-between items-center h-16 mx-auto px-0 sm:px-6">
+        <div>
+          {logoUrl && <Logo src={logoUrl}></Logo>}
           {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
-        </Logo>
+        </div>
 
         <div className="items-center flex-shrink-0 hidden lg:flex">
           <div className="flex items-center space-x-4">

@@ -10,7 +10,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setTheme(currentTheme === "light" ? "dark" : "light")}
-      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      className="p-2 cursor-pointer rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700"
       aria-label={`Switch to ${
         currentTheme === "light" ? "dark" : "light"
       } mode`}
@@ -23,7 +23,7 @@ const ThemeToggle = () => {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor"
+          stroke="white"
           className="w-5 h-5"
         >
           <path
@@ -39,7 +39,7 @@ const ThemeToggle = () => {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor"
+          stroke="white"
           className="w-5 h-5"
         >
           <path
