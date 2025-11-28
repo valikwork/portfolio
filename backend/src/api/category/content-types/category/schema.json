@@ -26,6 +26,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job",
+      "mappedBy": "category"
     }
   }
 }

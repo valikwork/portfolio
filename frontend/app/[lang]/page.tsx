@@ -1,11 +1,11 @@
-import ArticlesList from "./components/ArticlesList";
 import HeroSection from "./components/HeroSection";
+import JobsList from "./components/JobsList";
 
 const Profile = () => {
   return (
     <div>
       <HeroSection />
-      <ArticlesList />
+      <JobsList />
     </div>
   );
 };

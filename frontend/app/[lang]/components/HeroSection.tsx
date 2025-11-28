@@ -1,79 +1,17 @@
 "use client";
+import { BlockRenderer } from "@/app/[lang]/components/BlockRenderer";
 import Image from "next/image";
 import { useGlobal } from "../hooks/useGlobal";
 import { getStrapiMedia } from "../utils/api-helpers";
 import MarqueeLine from "./MarqueeLine";
-
-interface BlockNode {
-  type: string;
-  children?: Array<{ type: string; text: string }>;
-  level?: number;
-}
 
 const HeroSection = () => {
   const { data } = useGlobal();
   const { hero_section } = data || {};
   const { selfPortrait, introduction, moto, selfDescription } =
     hero_section || {};
-  console.log("hero_section", hero_section);
+
   const imageUrl = getStrapiMedia(selfPortrait?.url || null);
-  console.log("imageUrl", imageUrl);
-
-  // Helper to render blocks content
-  const renderBlocks = (blocks: BlockNode[]) => {
-    return blocks.map((block, index) => {
-      if (block.type === "paragraph") {
-        return (
-          <p key={index} className="text-lg leading-relaxed">
-            {block.children?.map((child, childIndex) => (
-              <span key={childIndex}>{child.text}</span>
-            ))}
-          </p>
-        );
-      }
-      if (block.type === "heading") {
-        const level = block.level || 2;
-        const headingClasses = "text-2xl font-bold mt-4 mb-2";
-        const content = block.children?.map((child, childIndex) => (
-          <span key={childIndex}>{child.text}</span>
-        ));
-
-        switch (level) {
-          case 1:
-            return (
-              <h1 key={index} className={headingClasses}>
-                {content}
-              </h1>
-            );
-          case 2:
-            return (
-              <h2 key={index} className={headingClasses}>
-                {content}
-              </h2>
-            );
-          case 3:
-            return (
-              <h3 key={index} className={headingClasses}>
-                {content}
-              </h3>
-            );
-          case 4:
-            return (
-              <h4 key={index} className={headingClasses}>
-                {content}
-              </h4>
-            );
-          default:
-            return (
-              <h2 key={index} className={headingClasses}>
-                {content}
-              </h2>
-            );
-        }
-      }
-      return null;
-    });
-  };
 
   return (
     <section className="relative py-10 overflow-hidden">
@@ -96,7 +34,7 @@ const HeroSection = () => {
 
               {selfDescription && (
                 <div className="space-y-4 max-w-2xl dark:text-white">
-                  {renderBlocks(selfDescription)}
+                  <BlockRenderer content={selfDescription} />
                 </div>
               )}
             </div>

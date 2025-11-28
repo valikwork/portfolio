@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import {
-  Article,
-  ArticleResponse,
+  Job,
+  JobResponse,
   StrapiCollectionMeta,
 } from "../types/generated-strapi";
 import { fetchAPI } from "../utils/fetch-api";
@@ -11,8 +11,8 @@ interface UseArticlesOptions {
   initialLoad?: boolean;
 }
 
-interface UseArticlesReturn {
-  data: Article[];
+interface UseJobsReturn {
+  data: Job[];
   meta: StrapiCollectionMeta | null;
   isLoading: boolean;
   error: Error | null;
@@ -22,31 +22,29 @@ interface UseArticlesReturn {
 
 const DEFAULT_PAGE_LIMIT = 10;
 
-export function useArticles(
-  options: UseArticlesOptions = {}
-): UseArticlesReturn {
+export function useJobs(options: UseArticlesOptions = {}): UseJobsReturn {
   const {
     pageLimit = Number(process.env.NEXT_PUBLIC_PAGE_LIMIT) ||
       DEFAULT_PAGE_LIMIT,
     initialLoad = true,
   } = options;
 
-  const [data, setData] = useState<Article[]>([]);
+  const [data, setData] = useState<Job[]>([]);
   const [meta, setMeta] = useState<StrapiCollectionMeta | null>(null);
   const [isLoading, setLoading] = useState(initialLoad);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchArticles = useCallback(async (start: number, limit: number) => {
+  const fetchJobs = useCallback(async (start: number, limit: number) => {
     setLoading(true);
     setError(null);
 
     try {
       const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const path = `/articles`;
+      const path = `/jobs`;
       const urlParamsObject = {
         sort: { createdAt: "desc" },
         populate: {
-          cover: { fields: ["url"] },
+          icon: { fields: ["url"] },
           category: { populate: "*" },
           authorsBio: {
             populate: "*",
@@ -59,7 +57,7 @@ export function useArticles(
       };
       const options = { headers: { Authorization: `Bearer ${token}` } };
 
-      const responseData: ArticleResponse = await fetchAPI(
+      const responseData: JobResponse = await fetchAPI(
         path,
         urlParamsObject,
         options
@@ -85,8 +83,8 @@ export function useArticles(
     if (!meta || isLoading) return;
 
     const nextStart = meta.pagination.start + meta.pagination.limit;
-    await fetchArticles(nextStart, pageLimit);
-  }, [meta, isLoading, fetchArticles, pageLimit]);
+    await fetchJobs(nextStart, pageLimit);
+  }, [meta, isLoading, fetchJobs, pageLimit]);
 
   const hasMore =
     meta !== null &&
@@ -94,9 +92,9 @@ export function useArticles(
 
   useEffect(() => {
     if (initialLoad) {
-      fetchArticles(0, pageLimit);
+      fetchJobs(0, pageLimit);
     }
-  }, [fetchArticles, pageLimit, initialLoad]);
+  }, [fetchJobs, pageLimit, initialLoad]);
 
   return {
     data,

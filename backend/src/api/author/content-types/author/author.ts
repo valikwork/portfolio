@@ -2,8 +2,10 @@
 
 import { Media } from '../../../../components/shared/interfaces/Media';
 import { Article } from '../../../article/content-types/article/article';
+import { Job } from '../../../job/content-types/job/job';
 import { Media_Plain } from '../../../../components/shared/interfaces/Media';
 import { Article_Plain } from '../../../article/content-types/article/article';
+import { Job_Plain } from '../../../job/content-types/job/job';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
 export interface Author {
@@ -13,6 +15,7 @@ export interface Author {
     avatar?: { data: Media };
     email?: string;
     articles: { data: Article[] };
+    jobs: { data: Job[] };
   };
 }
 export interface Author_Plain {
@@ -21,6 +24,7 @@ export interface Author_Plain {
   avatar?: Media_Plain;
   email?: string;
   articles: Article_Plain[];
+  jobs: Job_Plain[];
 }
 
 export interface Author_NoRelations {
@@ -29,6 +33,7 @@ export interface Author_NoRelations {
   avatar?: number;
   email?: string;
   articles: number[];
+  jobs: number[];
 }
 
 export interface Author_AdminPanelLifeCycle {
@@ -37,4 +42,5 @@ export interface Author_AdminPanelLifeCycle {
   avatar?: AdminPanelRelationPropertyModification<Media_Plain>;
   email?: string;
   articles: AdminPanelRelationPropertyModification<Article_Plain>;
+  jobs: AdminPanelRelationPropertyModification<Job_Plain>;
 }

@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "jobTitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "fullDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "start": {
+      "type": "date",
+      "required": true
+    },
+    "finish": {
+      "type": "date"
+    },
+    "fullTime": {
+      "type": "boolean",
+      "default": true
+    },
+    "company": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "jobs"
+    },
+    "authorsBio": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "jobs"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.quote",
+        "shared.rich-text",
+        "shared.slider",
+        "shared.video-embed"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

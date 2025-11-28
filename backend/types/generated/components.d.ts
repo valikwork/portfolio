@@ -492,6 +492,16 @@ export interface SharedVideoEmbed extends Struct.ComponentSchema {
   };
 }
 
+export interface SkillsSkills extends Struct.ComponentSchema {
+  collectionName: 'components_skills_skills';
+  info: {
+    displayName: 'Skills';
+  };
+  attributes: {
+    skill: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -529,6 +539,7 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
       'shared.video-embed': SharedVideoEmbed;
+      'skills.skills': SkillsSkills;
     }
   }
 }

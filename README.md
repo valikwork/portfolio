@@ -23,7 +23,7 @@ This portfolio project consists of two main applications:
 
 ### Backend
 
-- **CMS**: [Strapi 5.30.1](https://strapi.io/) - Headless CMS
+- **CMS**: [Strapi 5.31.2](https://strapi.io/) - Headless CMS
 - **Language**: TypeScript
 - **Database**: Better SQLite3
 - **Runtime**: Node.js (18-22.x)
