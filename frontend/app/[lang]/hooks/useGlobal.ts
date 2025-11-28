@@ -28,6 +28,7 @@ const DEFAULT_POPULATE = [
   "footer.legalLinks",
   "footer.socialLinks",
   "footer.categories",
+  "cv",
 ];
 
 export function useGlobal(options: UseGlobalOptions = {}): UseGlobalReturn {

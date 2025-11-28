@@ -28,6 +28,7 @@ export interface Global {
     notificationBanner?: NotificationBanner;
     navbar?: Navbar;
     footer?: Footer;
+    cv?: { data: Media };
     locale: string;
     localizations?: { data: Global[] };
   };
@@ -40,6 +41,7 @@ export interface Global_Plain {
   notificationBanner?: NotificationBanner_Plain;
   navbar?: Navbar_Plain;
   footer?: Footer_Plain;
+  cv?: Media_Plain;
   locale: string;
   localizations?: Global_Plain[];
 }
@@ -52,6 +54,7 @@ export interface Global_NoRelations {
   notificationBanner?: NotificationBanner_NoRelations;
   navbar?: Navbar_NoRelations;
   footer?: Footer_NoRelations;
+  cv?: number;
   locale: string;
   localizations?: Global[];
 }
@@ -64,6 +67,7 @@ export interface Global_AdminPanelLifeCycle {
   notificationBanner?: NotificationBanner_Plain;
   navbar?: Navbar_Plain;
   footer?: Footer_Plain;
+  cv?: AdminPanelRelationPropertyModification<Media_Plain>;
   locale: string;
   localizations?: Global[];
 }

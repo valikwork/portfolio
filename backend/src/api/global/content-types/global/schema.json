@@ -79,6 +79,21 @@
       },
       "component": "layout.footer",
       "repeatable": false
+    },
+    "cv": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

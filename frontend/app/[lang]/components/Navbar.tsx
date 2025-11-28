@@ -26,13 +26,12 @@ const NavLink = ({ url, text }: LinksLink) => {
 };
 
 const Navbar = () => {
-  const { data, isLoading, error } = useGlobal();
+  const { data, isLoading } = useGlobal();
 
   if (isLoading) return <div>Loading...</div>;
-  if (error || !data) return null;
 
   const navbarLogoUrl = getStrapiMedia(
-    data.navbar?.navbarLogo?.logoImg?.url || null
+    data?.navbar?.navbarLogo?.logoImg?.url || null
   );
 
   const logoText = data?.navbar?.navbarLogo?.logoText ?? null;
