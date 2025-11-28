@@ -69,9 +69,9 @@ export interface ElementsHeroSection extends Struct.ComponentSchema {
   };
   attributes: {
     introduction: Schema.Attribute.String & Schema.Attribute.Required;
-    Moto: Schema.Attribute.String & Schema.Attribute.Required;
-    SelfDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    SelfPortait: Schema.Attribute.Media<
+    moto: Schema.Attribute.String & Schema.Attribute.Required;
+    selfDescription: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    selfPortrait: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     > &
       Schema.Attribute.Required;

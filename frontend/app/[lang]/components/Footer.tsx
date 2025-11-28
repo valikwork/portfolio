@@ -1,14 +1,17 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
 import { FaDiscord } from "react-icons/fa";
+import { useGlobal } from "../hooks/useGlobal";
 import {
   Category,
   LinksLink,
   LinksSocialLink,
 } from "../types/generated-strapi";
+import { getStrapiMedia } from "../utils/api-helpers";
 import Logo from "./Logo";
 
 const FooterLink = ({ url, text }: LinksLink) => {
@@ -55,27 +58,28 @@ const RenderSocialIcon = ({ social }: { social: string | undefined }) => {
   }
 };
 
-const Footer = ({
-  logoUrl,
-  logoText,
-  menuLinks,
-  categoryLinks,
-  legalLinks,
-  socialLinks,
-}: {
-  logoUrl: string | null;
-  logoText: string | null;
-  menuLinks: Array<LinksLink>;
-  categoryLinks: Category[];
-  legalLinks: LinksLink[];
-  socialLinks: LinksSocialLink[];
-}) => {
+const Footer = () => {
+  const { data, isLoading, error } = useGlobal();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error || !data) return null;
+
+  const footerLogoUrl = getStrapiMedia(
+    data?.footer?.footerLogo?.logoImg?.url || null
+  );
+
+  const logoText = data?.footer?.footerLogo?.logoText ?? null;
+  const menuLinks = data?.footer?.menuLinks || [];
+  const categoryLinks = data?.footer?.categories || [];
+  const legalLinks = data?.footer?.legalLinks || [];
+  const socialLinks = data?.footer?.socialLinks || [];
+
   return (
     <footer className="py-6 bg-gray-50 text-gray-900 border-t border-gray-200 dark:bg-black dark:text-gray-50 dark:border-gray-800">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-300 dark:divide-gray-600 md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
-            <Logo src={logoUrl}>
+            <Logo src={footerLogoUrl}>
               {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
             </Logo>
           </div>

@@ -166,3 +166,17 @@ p {
 .react-slideshow-container [aria-label="Next Slide"] {
   margin-right: 1rem;
 }
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}

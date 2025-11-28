@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import type { GlobalResponse } from "./types/generated-strapi";
-import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
+import { getStrapiURL } from "./utils/api-helpers";
 import { fetchAPI } from "./utils/fetch-api";
 
 import { i18n } from "../../i18n-config";
@@ -14,7 +14,7 @@ const FALLBACK_SEO = {
   description: "Strapi Starter Next Blog",
 };
 
-const getGlobal = async (): Promise<GlobalResponse> => {
+const getMeta = async (): Promise<GlobalResponse> => {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
   if (!token)
@@ -24,17 +24,7 @@ const getGlobal = async (): Promise<GlobalResponse> => {
   const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const urlParamsObject = {
-    populate: [
-      "favicon",
-      "navbar.links",
-      "navbar.links",
-      "navbar.navbarLogo.logoImg",
-      "footer.footerLogo.logoImg",
-      "footer.menuLinks",
-      "footer.legalLinks",
-      "footer.socialLinks",
-      "footer.categories",
-    ],
+    populate: ["metadata", "favicon"],
   };
 
   const response = await fetchAPI(path, urlParamsObject, options);
@@ -43,7 +33,7 @@ const getGlobal = async (): Promise<GlobalResponse> => {
 };
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const meta = await getGlobal();
+  const meta = await getMeta();
 
   if (!meta.data) return FALLBACK_SEO;
 
@@ -70,45 +60,14 @@ const RootLayout = async ({
   params: Promise<{ lang: string }>;
 }) => {
   const resolvedParams = await params;
-  const global = await getGlobal();
   // TODO: CREATE A CUSTOM ERROR PAGE
-
-  if (!global.data) return null;
-
-  const { navbar, footer } = global.data;
-
-  const navbarLogoUrl = getStrapiMedia(
-    navbar?.navbarLogo?.logoImg?.url || null
-  );
-
-  const footerLogoUrl = getStrapiMedia(
-    footer?.footerLogo?.logoImg?.url || null
-  );
-  console.log("navbar", navbar);
   return (
     <html lang={resolvedParams.lang}>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {navbar && (
-            <Navbar
-              links={navbar.links ?? []}
-              logoUrl={navbarLogoUrl}
-              logoText={navbar?.navbarLogo?.logoText ?? null}
-            />
-          )}
-
+          <Navbar />
           <main className="min-h-screen">{children}</main>
-
-          {footer && (
-            <Footer
-              logoUrl={footerLogoUrl}
-              logoText={footer?.footerLogo?.logoText ?? null}
-              menuLinks={footer.menuLinks || []}
-              categoryLinks={footer.categories || []}
-              legalLinks={footer.legalLinks || []}
-              socialLinks={footer.socialLinks || []}
-            />
-          )}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

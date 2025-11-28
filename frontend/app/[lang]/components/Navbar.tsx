@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useGlobal } from "../hooks/useGlobal";
 import { LinksLink } from "../types/generated-strapi";
+import { getStrapiMedia } from "../utils/api-helpers";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
@@ -23,21 +25,27 @@ const NavLink = ({ url, text }: LinksLink) => {
   );
 };
 
-const Navbar = ({
-  links,
-  logoUrl,
-  logoText,
-}: {
-  links: LinksLink[];
-  logoUrl: string | null;
-  logoText: string | null;
-}) => {
+const Navbar = () => {
+  const { data, isLoading, error } = useGlobal();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error || !data) return null;
+
+  const navbarLogoUrl = getStrapiMedia(
+    data.navbar?.navbarLogo?.logoImg?.url || null
+  );
+
+  const logoText = data?.navbar?.navbarLogo?.logoText ?? null;
+  const links = data?.navbar?.links || [];
+
   return (
     <div className="p-4">
       <div className="container flex justify-between items-center h-16 mx-auto px-0 sm:px-6">
         <div>
-          {logoUrl && <Logo src={logoUrl}></Logo>}
-          {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
+          <Link href="/">
+            {navbarLogoUrl && <Logo src={navbarLogoUrl}></Logo>}
+            {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
+          </Link>
         </div>
 
         <div className="items-center flex-shrink-0 hidden lg:flex">

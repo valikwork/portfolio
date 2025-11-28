@@ -10,15 +10,15 @@
       "type": "string",
       "required": true
     },
-    "Moto": {
+    "moto": {
       "type": "string",
       "required": true
     },
-    "SelfDescription": {
+    "selfDescription": {
       "type": "blocks",
       "required": true
     },
-    "SelfPortait": {
+    "selfPortrait": {
       "type": "media",
       "multiple": false,
       "required": true,

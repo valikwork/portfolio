@@ -1,20 +1,29 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Article } from "../types/generated-strapi";
+import { useArticles } from "../hooks/useArticles";
 import { formatDate, getStrapiMedia } from "../utils/api-helpers";
+import Loader from "./Loader";
 
-const ArticlesList = ({
-  data: articles,
-  children,
-}: {
-  data: Article[] | null;
-  children?: React.ReactNode;
-}) => {
+const ArticlesList = () => {
+  const { data, isLoading, loadMore, hasMore, error } = useArticles();
+  if (isLoading && data.length === 0) return <Loader />;
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-2">Error</h2>
+          <p className="text-gray-600 dark:text-gray-400">{error.message}</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <section className="container p-6 mx-auto space-y-6 sm:space-y-12">
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {articles &&
-          articles.map((article) => {
+        {data &&
+          data.map((article) => {
             const imageUrl = getStrapiMedia(article?.cover?.url || null);
 
             const category = article?.category;
@@ -72,7 +81,18 @@ const ArticlesList = ({
             );
           })}
       </div>
-      {children && children}
+      {hasMore && (
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="px-6 py-3 text-sm rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:border-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={loadMore}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "Load more posts..."}
+          </button>
+        </div>
+      )}
     </section>
   );
 };

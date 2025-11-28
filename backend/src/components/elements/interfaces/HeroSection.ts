@@ -5,21 +5,21 @@ import { Media_Plain } from '../../shared/interfaces/Media';
 
 export interface HeroSection {
   introduction: string;
-  Moto: string;
-  SelfDescription: any;
-  SelfPortait: { data: Media };
+  moto: string;
+  selfDescription: any;
+  selfPortrait: { data: Media };
 }
 export interface HeroSection_Plain {
   introduction: string;
-  Moto: string;
-  SelfDescription: any;
-  SelfPortait: Media_Plain;
+  moto: string;
+  selfDescription: any;
+  selfPortrait: Media_Plain;
 }
 
 export interface HeroSection_NoRelations {
   introduction: string;
-  Moto: string;
-  SelfDescription: any;
-  SelfPortait: number;
+  moto: string;
+  selfDescription: any;
+  selfPortrait: number;
 }
 
