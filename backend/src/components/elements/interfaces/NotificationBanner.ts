@@ -4,20 +4,20 @@ import { Link } from '../../links/interfaces/Link';
 import { Link_Plain } from '../../links/interfaces/Link';
 import { Link_NoRelations } from '../../links/interfaces/Link';
 
-export enum TypeEnum {
+export enum Type {
   Alert = 'alert',
   Info = 'info',
   Warning = 'warning',}
 
 export interface NotificationBanner {
-  type: TypeEnum;
+  type: Type;
   heading: string;
   text: string;
   show?: boolean;
   link?: Link;
 }
 export interface NotificationBanner_Plain {
-  type: TypeEnum;
+  type: Type;
   heading: string;
   text: string;
   show?: boolean;
@@ -25,7 +25,7 @@ export interface NotificationBanner_Plain {
 }
 
 export interface NotificationBanner_NoRelations {
-  type: TypeEnum;
+  type: Type;
   heading: string;
   text: string;
   show?: boolean;
