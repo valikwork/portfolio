@@ -10,13 +10,15 @@ import ThemeToggle from "./ThemeToggle";
 
 const NavLink = ({ url, text }: LinksLink) => {
   const path = usePathname();
+  // Ensure URL is absolute (starts with /)
+  const absoluteUrl = url.startsWith("/") ? url : `/${url}`;
 
   return (
     <li className="flex">
       <Link
-        href={url}
+        href={absoluteUrl}
         className={`flex items-center mx-4 -mb-1 hover:text-violet-600 dark:hover:text-violet-400 ${
-          path === url && "text-violet-600 dark:text-violet-400"
+          path === absoluteUrl && "text-violet-600 dark:text-violet-400"
         }}`}
       >
         {text}

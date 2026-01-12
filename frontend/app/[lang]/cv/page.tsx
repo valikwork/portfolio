@@ -66,35 +66,34 @@ const CVPage = async () => {
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             View my professional background and experience in details
           </p>
-          <a
-            href={cvUrl || ""}
-            download={cvName}
-            className="inline-block bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-          >
-            Download CV
-          </a>
+          <div className="flex gap-4 justify-center">
+            <a
+              href={cvUrl || ""}
+              download={cvName}
+              className="inline-block bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              Download CV
+            </a>
+            {isPDF && cvUrl && (
+              <a
+                href={cvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+              >
+                Open in New Tab
+              </a>
+            )}
+          </div>
         </div>
 
         {isPDF && cvUrl && (
           <div className="border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden shadow-lg">
-            <object
-              data={cvUrl}
-              type="application/pdf"
+            <iframe
+              src={cvUrl}
               className="w-full h-[800px]"
-            >
-              <div className="p-8 text-center">
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  PDF preview is not available in your browser.
-                </p>
-                <a
-                  href={cvUrl}
-                  download={cvName}
-                  className="text-violet-600 hover:text-violet-700 underline"
-                >
-                  Download CV to view
-                </a>
-              </div>
-            </object>
+              title="CV Preview"
+            />
           </div>
         )}
 

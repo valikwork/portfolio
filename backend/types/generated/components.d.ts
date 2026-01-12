@@ -244,7 +244,7 @@ export interface LinksSocialLink extends Struct.ComponentSchema {
   attributes: {
     newTab: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     social: Schema.Attribute.Enumeration<
-      ['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']
+      ['LINKEDIN', 'YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE', 'GITHUB', 'BSKY']
     >;
     text: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;

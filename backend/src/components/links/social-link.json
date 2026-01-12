@@ -21,10 +21,13 @@
     "social": {
       "type": "enumeration",
       "enum": [
+        "LINKEDIN",
         "YOUTUBE",
         "TWITTER",
         "DISCORD",
-        "WEBSITE"
+        "WEBSITE",
+        "GITHUB",
+        "BSKY"
       ]
     }
   }

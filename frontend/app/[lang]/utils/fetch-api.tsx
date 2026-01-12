@@ -1,19 +1,49 @@
 import qs from "qs";
 import { getStrapiURL } from "./api-helpers";
 
+interface FetchAPIOptions {
+  headers?: Record<string, string>;
+  cache?: RequestCache;
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
+}
+
+/**
+ * Fetch data from Strapi API with caching
+ * @param path - API endpoint path (e.g., '/global')
+ * @param urlParamsObject - Query parameters object
+ * @param options - Fetch options including cache settings
+ *
+ * Cache options:
+ * - revalidate: 3600 (1 hour) - for data that rarely changes (global settings)
+ * - revalidate: 60 (1 minute) - for dynamic content
+ * - revalidate: false - never revalidate (ISR)
+ * - cache: 'no-store' - disable caching for real-time data
+ */
 export async function fetchAPI(
   path: string,
   urlParamsObject = {},
-  options = {}
+  options: FetchAPIOptions = {}
 ) {
   try {
+    // Default cache settings - 1 hour for global data
+    const defaultCacheSettings =
+      path === "/global"
+        ? { revalidate: 3600 } // 1 hour for global settings
+        : { revalidate: 60 }; // 1 minute for other content
+
     // Merge default and user options
     const mergedOptions = {
-      next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
       },
       ...options,
+      next: {
+        ...defaultCacheSettings,
+        ...(options.next || {}),
+      },
     };
 
     // Build request URL

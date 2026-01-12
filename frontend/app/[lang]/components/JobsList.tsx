@@ -83,7 +83,7 @@ const JobsList = () => {
         <div className="flex justify-center">
           <button
             type="button"
-            className="cursor-pointer px-6 py-3 text-sm rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:border-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="text-gray-900 dark:text-gray-100 cursor-pointer px-6 py-3 text-sm rounded-lg border border-gray-300 bg-white hover:bg-gray-50 hover:border-gray-400 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:border-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={loadMore}
             disabled={isLoading}
           >

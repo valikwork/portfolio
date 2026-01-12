@@ -49,7 +49,7 @@ async function getJobBySlug(slug: string): Promise<Job | null> {
 const JobPage = async ({ params }: JobPageProps) => {
   const resolvedParams = await params;
   const job = await getJobBySlug(resolvedParams.job);
-  console.log("job", job);
+
   if (!job) {
     notFound();
   }
@@ -180,7 +180,9 @@ const JobPage = async ({ params }: JobPageProps) => {
             About the Role
           </h2>
           <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
-            {job.description && <BlockRenderer content={job.description} />}
+            {job.fullDescription && (
+              <BlockRenderer content={job.fullDescription} />
+            )}
           </div>
         </div>
 

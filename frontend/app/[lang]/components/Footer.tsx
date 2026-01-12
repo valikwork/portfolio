@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaBluesky } from "react-icons/fa6";
+
 import { useGlobal } from "../hooks/useGlobal";
 import {
   Category,
@@ -53,6 +55,12 @@ const RenderSocialIcon = ({ social }: { social: string | undefined }) => {
       return <AiFillYoutube />;
     case "DISCORD":
       return <FaDiscord />;
+    case "GITHUB":
+      return <FaGithub />;
+    case "BSKY":
+      return <FaBluesky />;
+    case "LINKEDIN":
+      return <FaLinkedin />;
     default:
       return null;
   }
@@ -77,36 +85,38 @@ const Footer = () => {
   return (
     <footer className="py-6 bg-gray-50 text-gray-900 border-t border-gray-200 dark:bg-black dark:text-gray-50 dark:border-gray-800">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-300 dark:divide-gray-600 md:space-y-12 divide-opacity-50">
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 mb-4">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
             <Logo src={footerLogoUrl}>
               {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
             </Logo>
           </div>
 
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium text-gray-800 dark:text-gray-200">
-              Categories
-            </p>
-            <ul>
-              {categoryLinks.map((link: Category) => (
-                <CategoryLink key={link.slug} {...link} />
-              ))}
-            </ul>
-          </div>
+          {categoryLinks.length > 0 && (
+            <div className="col-span-6 text-center md:text-left md:col-span-3">
+              <p className="pb-1 text-lg font-medium text-gray-800 dark:text-gray-200">
+                Categories
+              </p>
+              <ul>
+                {categoryLinks.map((link: Category) => (
+                  <CategoryLink key={link.slug} {...link} />
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="col-span-6 text-center md:text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium text-gray-800 dark:text-gray-200">
               Menu
             </p>
-            <ul>
+            <ul className="flex gap-4">
               {menuLinks.map((link: LinksLink) => (
                 <FooterLink key={link.url} {...link} />
               ))}
             </ul>
           </div>
         </div>
-        <div className="grid justify-center pt-6 lg:justify-between">
+        <div className="grid justify-center items-center pt-6 lg:justify-between">
           <div className="flex">
             <span className="mr-2 text-gray-600 dark:text-gray-400">
               ©{new Date().getFullYear()} All rights reserved
