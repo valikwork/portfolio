@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import type { GlobalResponse } from "./types/generated-strapi";
 import { getStrapiURL } from "./utils/api-helpers";
 import { fetchAPI } from "./utils/fetch-api";
