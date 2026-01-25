@@ -14,7 +14,7 @@ import { AdminPanelRelationPropertyModification } from '../../../../common/schem
 export interface Job {
   id: number;
   attributes: {
-    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    jobTitle?: string;
+    createdAt: Date;    updatedAt: Date;    publishedAt?: Date;    jobTitle: string;
     description: any;
     fullDescription: any;
     start: Date;
@@ -32,7 +32,7 @@ export interface Job {
 }
 export interface Job_Plain {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  jobTitle?: string;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  jobTitle: string;
   description: any;
   fullDescription: any;
   start: Date;
@@ -50,7 +50,7 @@ export interface Job_Plain {
 
 export interface Job_NoRelations {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  jobTitle?: string;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  jobTitle: string;
   description: any;
   fullDescription: any;
   start: Date;
@@ -68,7 +68,7 @@ export interface Job_NoRelations {
 
 export interface Job_AdminPanelLifeCycle {
   id: number;
-  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  jobTitle?: string;
+  createdAt: Date;  updatedAt: Date;  publishedAt?: Date;  jobTitle: string;
   description: any;
   fullDescription: any;
   start: Date;

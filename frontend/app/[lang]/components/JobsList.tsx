@@ -44,7 +44,7 @@ const JobsList = () => {
                 className="group hover:no-underline focus:no-underline bg-white border border-gray-200 hover:border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 <div className="p-6 space-y-2 relative">
-                  <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline text-gray-900 dark:text-gray-100">
+                  <h3 className="text-xl pr-10 md:pr-0 font-semibold group-hover:underline group-focus:underline text-gray-900 dark:text-gray-100">
                     {job.jobTitle} @ {job.company} -{" "}
                     {job.fullTime ? "Full-time" : "Part-time"}
                   </h3>
@@ -54,7 +54,7 @@ const JobsList = () => {
                         alt={`${job.company} logo`}
                         width={100}
                         height={40}
-                        className="max-h-[50px] w-auto"
+                        className="max-h-[50px] w-auto max-w-[50px] md:max-w-full"
                         src={companyLogo}
                         unoptimized={true}
                       />

@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "jobTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "blocks",

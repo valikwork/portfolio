@@ -7,7 +7,8 @@ export enum Social {
   Discord = 'DISCORD',
   Website = 'WEBSITE',
   Github = 'GITHUB',
-  Bsky = 'BSKY',}
+  Bsky = 'BSKY',
+  Telegram = 'TELEGRAM',}
 
 export interface SocialLink {
   url: string;

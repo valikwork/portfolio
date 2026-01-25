@@ -18,17 +18,17 @@ const HeroSection = () => {
       <MarqueeLine />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 lg:p-12">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 lg:p-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <div className="space-y-6 order-2 lg:order-1">
               <div className="inline-block">
-                <span className="px-4 py-2 bg-violet-100 dark:bg-violet-900/30 dark:text-white rounded-full text-2xl font-semibold">
+                <span className="px-4 py-2 bg-violet-100 dark:bg-violet-900/30 dark:text-white rounded-full text-l md:text-2xl font-semibold">
                   {introduction}
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl dark:text-white lg:text-6xl font-bold font-heading leading-tight">
+              <h1 className="text-4xl md:text-5xl dark:text-white md:text-6xl text-2xl font-bold font-heading leading-tight">
                 {moto}
               </h1>
 

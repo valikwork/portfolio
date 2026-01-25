@@ -63,10 +63,10 @@ const RootLayout = async ({
   // TODO: CREATE A CUSTOM ERROR PAGE
   return (
     <html lang={resolvedParams.lang}>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
-          <main className="min-h-screen">{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

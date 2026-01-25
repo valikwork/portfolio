@@ -36,7 +36,7 @@ async function getJobBySlug(slug: string): Promise<Job | null> {
   const response: JobSingleResponse = await fetchAPI(
     path,
     urlParamsObject,
-    options
+    options,
   );
 
   return response.data &&
@@ -61,15 +61,15 @@ const JobPage = async ({ params }: JobPageProps) => {
     : timeDuration(job.start, new Date().toISOString());
 
   return (
-    <div className="min-h-screen">
+    <div>
       {/* Hero Section with Cover Image */}
       {coverImage && (
-        <div className="relative w-full h-[400px] md:h-[500px]">
+        <div className="relative w-full md:h-[500px] hidden md:block">
           <Image
             src={coverImage}
             alt={job.cover?.alternativeText || `${job.company} cover`}
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority
             unoptimized={true}
           />
@@ -80,7 +80,7 @@ const JobPage = async ({ params }: JobPageProps) => {
       {/* Main Content */}
       <div
         className={`flex flex-col max-w-4xl mx-auto px-6 relative z-10 ${
-          coverImage ? "-mt-20" : "pt-12"
+          coverImage ? "md:-mt-20" : "pt-12"
         }`}
       >
         {/* Job Header Card */}
