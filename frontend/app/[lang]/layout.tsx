@@ -62,6 +62,12 @@ const RootLayout = async ({
   // TODO: CREATE A CUSTOM ERROR PAGE
   return (
     <html lang={resolvedParams.lang}>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="5KxQBuzkD6edh8Mc-7Dug-ymlAoiioTFT4bdlxgp_iU"
+        />
+      </head>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
