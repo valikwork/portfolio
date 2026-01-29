@@ -65,7 +65,7 @@ const RootLayout = async ({
       <head>
         <meta
           name="google-site-verification"
-          content="5KxQBuzkD6edh8Mc-7Dug-ymlAoiioTFT4bdlxgp_iU"
+          content="x_Eu9aZ7e-VWkw5JMdenUo5KWAPPRUXRZm1wu4aDNrI"
         />
       </head>
       <body className="flex flex-col min-h-screen">
