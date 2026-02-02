@@ -8,9 +8,30 @@ function getLocale(request: NextRequest): string {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
+  // Get languages from Accept-Language header
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
   const locales: string[] = [...i18n.locales];
-  return matchLocale(languages, locales, i18n.defaultLocale);
+
+  // Filter out invalid locales and handle empty array
+  const validLanguages = languages.filter((lang) => {
+    try {
+      Intl.getCanonicalLocales(lang);
+      return true;
+    } catch {
+      return false;
+    }
+  });
+
+  // If no valid languages, return default locale
+  if (validLanguages.length === 0) {
+    return i18n.defaultLocale;
+  }
+
+  try {
+    return matchLocale(validLanguages, locales, i18n.defaultLocale);
+  } catch {
+    return i18n.defaultLocale;
+  }
 }
 
 export function proxy(request: NextRequest) {
