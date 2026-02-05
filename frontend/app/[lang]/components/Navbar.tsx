@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -85,6 +86,7 @@ const NavLink = ({
 
 const Navbar = () => {
   const { data, isLoading } = useGlobal();
+  const { resolvedTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   if (isLoading) return <div>Loading...</div>;
@@ -129,8 +131,8 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-6 h-6 text-gray-700 dark:text-gray-100"
+                stroke={resolvedTheme === "dark" ? "#f3f4f6" : "#111827"}
+                className="w-6 h-6"
               >
                 <path
                   strokeLinecap="round"
@@ -144,8 +146,8 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-6 h-6 text-gray-700 dark:text-gray-100"
+                stroke={resolvedTheme === "dark" ? "#f3f4f6" : "#111827"}
+                className="w-6 h-6"
               >
                 <path
                   strokeLinecap="round"
