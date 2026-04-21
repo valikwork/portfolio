@@ -67,8 +67,7 @@ const JobsList = () => {
                       {job.finish
                         ? ` - ${formatMonthYear(job.finish)}`
                         : " - Present"}
-                      {job.finish &&
-                        ` (${timeDuration(job.start, job.finish)})`}
+                      {` (${timeDuration(job.start, job.finish || new Date().toDateString())})`}
                     </span>
                   </div>
                   <div className="py-4 text-gray-700 dark:text-gray-300">
